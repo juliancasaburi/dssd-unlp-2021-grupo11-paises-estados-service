@@ -1,0 +1,60 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "dssd-unlp-2021-grupo11-paises-estados-service",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/topEstados": {
+            "get": {
+                "tags": [
+                    "estados"
+                ],
+                "summary": "Estados",
+                "description": "Estados",
+                "operationId": "getTopEstados",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/topIdiomas": {
+            "get": {
+                "tags": [
+                    "idiomas"
+                ],
+                "summary": "Idiomas",
+                "description": "Idiomas",
+                "operationId": "getTopIdiomas",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        []
+    ]
+}
