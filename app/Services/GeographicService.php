@@ -61,4 +61,17 @@ class GeographicService
 
         return $paises;
     }
+
+    public function getTopContinente() // excluido América
+    {
+        $continentes = Continente::where([
+            ['name', '!=', 'North America'],
+            ['name', '!=', 'South America'],
+        ])->withCount('sociedadesAnonimas')
+        ->orderBy('sociedades_anonimas_count', 'desc')
+        ->take(1)
+        ->get();
+        
+        return $continentes;
+    }
 }

@@ -52,6 +52,30 @@
                     }
                 }
             }
+        },
+        "/api/topContinente": {
+            "get": {
+                "tags": [
+                    "continentes"
+                ],
+                "summary": "Continentes",
+                "description": "Continente",
+                "operationId": "getTopContinente",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "security": [
