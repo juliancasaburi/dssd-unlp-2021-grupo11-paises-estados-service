@@ -13,6 +13,16 @@
                 "summary": "Top Estados",
                 "description": "Top Estados",
                 "operationId": "getTopEstados",
+                "parameters": [
+                    {
+                        "name": "cantidad",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"
@@ -37,6 +47,16 @@
                 "summary": "Top idiomas",
                 "description": "Top idiomas",
                 "operationId": "getTopIdiomas",
+                "parameters": [
+                    {
+                        "name": "cantidad",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "int"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK"

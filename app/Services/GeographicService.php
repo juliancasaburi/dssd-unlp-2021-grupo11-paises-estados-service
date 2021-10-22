@@ -16,20 +16,20 @@ class GeographicService
         );
     }
 
-    public function getTopEstados()
+    public function getTopEstados($cantidad = 2)
     {
         $estados = Estado::withCount('sociedadesAnonimas')
             ->orderBy('sociedades_anonimas_count', 'desc')
-            ->take(2)
+            ->take($cantidad)
             ->get();
         return $estados;
     }
 
-    public function getTopIdiomas()
+    public function getTopIdiomas($cantidad = 2)
     {
         $paises = Pais::withCount('sociedadesAnonimas')
             ->orderBy('sociedades_anonimas_count', 'desc')
-            ->take(2)
+            ->take($cantidad)
             ->get();
 
         $client = $this->getCountriesAPIClient();
