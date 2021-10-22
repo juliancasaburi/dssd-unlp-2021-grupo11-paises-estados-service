@@ -9,6 +9,12 @@ use GraphQL\Client;
 
 class GeographicService
 {
+    private function getCountriesAPIClient()
+    {
+        return new Client(
+            'https://countries.trevorblades.com/',
+        );
+    }
 
     public function getTopEstados()
     {
@@ -26,10 +32,7 @@ class GeographicService
             ->take(2)
             ->get();
 
-        $client = new Client(
-            'https://countries.trevorblades.com/',
-        );
-
+        $client = $this->getCountriesAPIClient();
         $paises->map(function ($pais) use ($client) {
             $gql = <<<QUERY
                 query {
@@ -81,9 +84,7 @@ class GeographicService
         if ($continentes->count() == 7)
             return [];
         else {
-            $client = new Client(
-                'https://countries.trevorblades.com/',
-            );
+            $client = $this->getCountriesAPIClient();
             $gql = <<<QUERY
                     query {
                         continents {
