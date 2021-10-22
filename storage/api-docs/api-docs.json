@@ -10,8 +10,8 @@
                 "tags": [
                     "estados"
                 ],
-                "summary": "Estados",
-                "description": "Estados",
+                "summary": "Top Estados",
+                "description": "Top Estados",
                 "operationId": "getTopEstados",
                 "responses": {
                     "200": {
@@ -34,8 +34,8 @@
                 "tags": [
                     "idiomas"
                 ],
-                "summary": "Idiomas",
-                "description": "Idiomas",
+                "summary": "Top idiomas",
+                "description": "Top idiomas",
                 "operationId": "getTopIdiomas",
                 "responses": {
                     "200": {
@@ -58,8 +58,8 @@
                 "tags": [
                     "continentes"
                 ],
-                "summary": "Continentes",
-                "description": "Continente",
+                "summary": "El continente del planeta (excluido América) hacia donde más se exporta",
+                "description": "El continente del planeta (excluido América) hacia donde más se exporta",
                 "operationId": "getTopContinente",
                 "responses": {
                     "200": {

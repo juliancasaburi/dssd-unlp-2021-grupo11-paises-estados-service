@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Services\GeographicService;
 use App\Http\Resources\EstadoCollection;
 use App\Http\Resources\PaisCollection;
@@ -16,8 +15,8 @@ class GeographicController extends Controller
      *
      * @OA\Get(
      *    path="/api/topEstados",
-     *    summary="Estados",
-     *    description="Estados",
+     *    summary="Top Estados",
+     *    description="Top Estados",
      *    operationId="getTopEstados",
      *    tags={"estados"},
      *    @OA\Response(
@@ -41,12 +40,12 @@ class GeographicController extends Controller
     }
 
     /**
-     * Obtener los estados donde se registran más sociedades.
+     * Top idiomas.
      *
      * @OA\Get(
      *    path="/api/topIdiomas",
-     *    summary="Idiomas",
-     *    description="Idiomas",
+     *    summary="Top idiomas",
+     *    description="Top idiomas",
      *    operationId="getTopIdiomas",
      *    tags={"idiomas"},
      *    @OA\Response(
@@ -74,8 +73,8 @@ class GeographicController extends Controller
      *
      * @OA\Get(
      *    path="/api/topContinente",
-     *    summary="Continentes",
-     *    description="Continente",
+     *    summary="El continente del planeta (excluido América) hacia donde más se exporta",
+     *    description="El continente del planeta (excluido América) hacia donde más se exporta",
      *    operationId="getTopContinente",
      *    tags={"continentes"},
      *    @OA\Response(
