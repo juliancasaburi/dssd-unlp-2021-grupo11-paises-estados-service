@@ -5,11 +5,7 @@ namespace App\Services;
 use App\Models\Continente;
 use App\Models\Pais;
 use App\Models\Estado;
-use App\Models\SociedadAnonima;
 use GraphQL\Client;
-use GraphQL\Query;
-use GraphQL\RawObject;
-use GraphQL\Variable;
 
 class GeographicService
 {
