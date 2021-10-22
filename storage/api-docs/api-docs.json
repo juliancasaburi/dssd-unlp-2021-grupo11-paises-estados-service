@@ -10,8 +10,8 @@
                 "tags": [
                     "estados"
                 ],
-                "summary": "Estados",
-                "description": "Estados",
+                "summary": "Top Estados",
+                "description": "Top Estados",
                 "operationId": "getTopEstados",
                 "responses": {
                     "200": {
@@ -34,8 +34,8 @@
                 "tags": [
                     "idiomas"
                 ],
-                "summary": "Idiomas",
-                "description": "Idiomas",
+                "summary": "Top idiomas",
+                "description": "Top idiomas",
                 "operationId": "getTopIdiomas",
                 "responses": {
                     "200": {
@@ -58,9 +58,57 @@
                 "tags": [
                     "continentes"
                 ],
-                "summary": "Continentes",
-                "description": "Continente",
+                "summary": "El continente del planeta (excluido América) hacia donde más se exporta",
+                "description": "El continente del planeta (excluido América) hacia donde más se exporta",
                 "operationId": "getTopContinente",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/continentesNoSeExporta": {
+            "get": {
+                "tags": [
+                    "continentes"
+                ],
+                "summary": "Continentes hacia los que no se exporta",
+                "description": "Continentes hacia los que no se exporta",
+                "operationId": "getContinentesHaciaDondeNoSeExporta",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/paisesNoSeExporta": {
+            "get": {
+                "tags": [
+                    "paises"
+                ],
+                "summary": "Paises hacia los que no se exporta",
+                "description": "Paises hacia los que no se exporta",
+                "operationId": "getPaisesHaciaDondeNoSeExporta",
                 "responses": {
                     "200": {
                         "description": "OK"

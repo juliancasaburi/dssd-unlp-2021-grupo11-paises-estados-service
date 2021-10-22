@@ -17,3 +17,5 @@ use App\Http\Controllers\Api\GeographicController;
 Route::get('topEstados', [GeographicController::class, 'getTopEstados']);
 Route::get('topIdiomas', [GeographicController::class, 'getTopIdiomas']);
 Route::get('topContinente', [GeographicController::class, 'getTopContinente']);
+Route::get('continentesNoSeExporta', [GeographicController::class, 'getContinentesHaciaDondeNoSeExporta']);
+Route::get('paisesNoSeExporta', [GeographicController::class, 'getPaisesHaciaDondeNoSeExporta']);
