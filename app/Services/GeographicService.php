@@ -51,10 +51,7 @@ class GeographicService
                 }
                 QUERY;
 
-            $results = $client->runRawQuery($gql);
-            $languages = $results->getData()->countries[0]->languages;
-
-            $pais['languages'] = $languages;
+            $pais['languages'] = $client->runRawQuery($gql)->getData()->countries[0]->languages;
             return $pais;
         });
 
