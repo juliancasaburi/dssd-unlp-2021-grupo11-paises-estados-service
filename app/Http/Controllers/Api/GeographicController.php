@@ -7,6 +7,7 @@ use App\Services\GeographicService;
 use App\Http\Resources\EstadoCollection;
 use App\Http\Resources\PaisCollection;
 use App\Http\Resources\ContinenteCollection;
+use Illuminate\Http\Request;
 
 class GeographicController extends Controller
 {
@@ -19,6 +20,14 @@ class GeographicController extends Controller
      *    description="Top Estados",
      *    operationId="getTopEstados",
      *    tags={"estados"},
+     *    @OA\Parameter(
+     *         name="cantidad",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="int"
+     *         )
+     *    ),
      *    @OA\Response(
      *       response=200,
      *       description="OK"
@@ -32,11 +41,12 @@ class GeographicController extends Controller
      *    ),
      * )
      * 
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTopEstados(GeographicService $service)
+    public function getTopEstados(Request $request, GeographicService $service)
     {
-        return response()->json(new EstadoCollection($service->getTopEstados()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(new EstadoCollection($service->getTopEstados($request->query('cantidad'))), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -48,6 +58,14 @@ class GeographicController extends Controller
      *    description="Top idiomas",
      *    operationId="getTopIdiomas",
      *    tags={"idiomas"},
+     *    @OA\Parameter(
+     *         name="cantidad",
+     *         in="query",
+     *         required=false,
+     *         @OA\Schema(
+     *           type="int"
+     *         )
+     *    ),
      *    @OA\Response(
      *       response=200,
      *       description="OK"
@@ -61,11 +79,12 @@ class GeographicController extends Controller
      *    ),
      * )
      * 
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function getTopIdiomas(GeographicService $service)
+    public function getTopIdiomas(Request $request, GeographicService $service)
     {
-        return response()->json(new PaisCollection($service->getTopIdiomas()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(new PaisCollection($service->getTopIdiomas($request->query('cantidad'))), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**
