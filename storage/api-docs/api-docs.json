@@ -76,6 +76,54 @@
                     }
                 }
             }
+        },
+        "/api/continentesNoSeExporta": {
+            "get": {
+                "tags": [
+                    "continentes"
+                ],
+                "summary": "Continentes hacia los que no se exporta",
+                "description": "Continentes hacia los que no se exporta",
+                "operationId": "getContinentesHaciaDondeNoSeExporta",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/paisesNoSeExporta": {
+            "get": {
+                "tags": [
+                    "paises"
+                ],
+                "summary": "Paises hacia los que no se exporta",
+                "description": "Paises hacia los que no se exporta",
+                "operationId": "getPaisesHaciaDondeNoSeExporta",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "500 internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": "500 internal server error"
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "security": [

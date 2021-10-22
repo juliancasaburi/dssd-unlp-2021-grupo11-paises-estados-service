@@ -30,12 +30,12 @@ class GeographicService
             ->take(2)
             ->get();
 
-            $client = new Client(
-                'https://countries.trevorblades.com/',
-            );
-            
-            $paises->map(function ($pais) use ($client) {
-                $gql = <<<QUERY
+        $client = new Client(
+            'https://countries.trevorblades.com/',
+        );
+
+        $paises->map(function ($pais) use ($client) {
+            $gql = <<<QUERY
                 query {
                     countries (filter: {
                         code: { eq: "$pais->code"}
@@ -52,12 +52,12 @@ class GeographicService
                 }
                 QUERY;
 
-                $results = $client->runRawQuery($gql);
-                $languages = $results->getData()->countries[0]->languages;
+            $results = $client->runRawQuery($gql);
+            $languages = $results->getData()->countries[0]->languages;
 
-                $pais['languages'] = $languages;
-                return $pais;
-            });
+            $pais['languages'] = $languages;
+            return $pais;
+        });
 
         return $paises;
     }
@@ -68,10 +68,20 @@ class GeographicService
             ['name', '!=', 'North America'],
             ['name', '!=', 'South America'],
         ])->withCount('sociedadesAnonimas')
-        ->orderBy('sociedades_anonimas_count', 'desc')
-        ->take(1)
-        ->get();
-        
+            ->orderBy('sociedades_anonimas_count', 'desc')
+            ->take(1)
+            ->get();
+
         return $continentes;
+    }
+
+    public function getContinentesHaciaDondeNoSeExporta()
+    {
+        return [];
+    }
+
+    public function getPaisesHaciaDondeNoSeExporta()
+    {
+        return [];
     }
 }

@@ -97,4 +97,62 @@ class GeographicController extends Controller
     {
         return response()->json(new ContinenteCollection($service->getTopContinente()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
+
+    /**
+     * Obtener los continentes hacia los que no se exporta
+     *
+     * @OA\Get(
+     *    path="/api/continentesNoSeExporta",
+     *    summary="Continentes hacia los que no se exporta",
+     *    description="Continentes hacia los que no se exporta",
+     *    operationId="getContinentesHaciaDondeNoSeExporta",
+     *    tags={"continentes"},
+     *    @OA\Response(
+     *       response=200,
+     *       description="OK"
+     *    ),
+     *    @OA\Response(
+     *       response=500,
+     *       description="500 internal server error",
+     *       @OA\JsonContent(
+     *          example="500 internal server error"
+     *       )
+     *    ),
+     * )
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getContinentesHaciaDondeNoSeExporta(GeographicService $service)
+    {
+        return response()->json(new PaisCollection($service->getContinentesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+    }
+
+    /**
+     * Obtener los paises hacia los que no se exporta
+     *
+     * @OA\Get(
+     *    path="/api/paisesNoSeExporta",
+     *    summary="Paises hacia los que no se exporta",
+     *    description="Paises hacia los que no se exporta",
+     *    operationId="getPaisesHaciaDondeNoSeExporta",
+     *    tags={"paises"},
+     *    @OA\Response(
+     *       response=200,
+     *       description="OK"
+     *    ),
+     *    @OA\Response(
+     *       response=500,
+     *       description="500 internal server error",
+     *       @OA\JsonContent(
+     *          example="500 internal server error"
+     *       )
+     *    ),
+     * )
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getPaisesHaciaDondeNoSeExporta(GeographicService $service)
+    {
+        return response()->json(new PaisCollection($service->getPaisesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+    }
 }
