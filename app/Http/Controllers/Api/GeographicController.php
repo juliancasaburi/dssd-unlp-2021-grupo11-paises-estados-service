@@ -124,7 +124,7 @@ class GeographicController extends Controller
      */
     public function getContinentesHaciaDondeNoSeExporta(GeographicService $service)
     {
-        return response()->json(new PaisCollection($service->getContinentesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(new ContinenteCollection($service->getContinentesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**

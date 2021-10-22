@@ -77,7 +77,29 @@ class GeographicService
 
     public function getContinentesHaciaDondeNoSeExporta()
     {
-        return [];
+        $continentes = Continente::all();
+        /* Verificar si se exporta hacia todos los continentes, para no realizar request a la API
+        https://countries.trevorblades.com/ usa el modelo de 7 continentes
+        https://en.wikipedia.org/wiki/Continent#/media/File:Continental_models-Australia.gif
+        */
+        if ($continentes->count() == 7)
+            return [];
+        else {
+            $client = new Client(
+                'https://countries.trevorblades.com/',
+            );
+            $gql = <<<QUERY
+                    query {
+                        continents {
+                            name
+                        }
+                    }
+                    QUERY;
+
+            $apiContinentes = collect($client->runRawQuery($gql)->getData()->continents);
+
+            return $apiContinentes->whereNotIn('name', $continentes->pluck('name'));
+        }
     }
 
     public function getPaisesHaciaDondeNoSeExporta()
