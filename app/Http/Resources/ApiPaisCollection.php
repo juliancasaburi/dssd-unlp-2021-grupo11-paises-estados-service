@@ -3,17 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use App\Http\Resources\PaisConLenguajes;
 
-class PaisCollection extends ResourceCollection
+class ApiPaisCollection extends ResourceCollection
 {
-    /**
-     * The resource that this resource collects.
-     *
-     * @var string
-     */
-    public $collects = PaisConLenguajes::class;
-
     /**
      * Transform the resource collection into an array.
      *

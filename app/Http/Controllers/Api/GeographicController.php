@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Services\GeographicService;
 use App\Http\Resources\EstadoCollection;
-use App\Http\Resources\PaisCollection;
+use App\Http\Resources\ApiPaisCollection;
+use App\Http\Resources\PaisConLenguajeCollection;
 use App\Http\Resources\ContinenteCollection;
 use Illuminate\Http\Request;
 
@@ -84,7 +85,7 @@ class GeographicController extends Controller
      */
     public function getTopIdiomas(Request $request, GeographicService $service)
     {
-        return response()->json(new PaisCollection($service->getTopIdiomas($request->query('cantidad'))), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(new PaisConLenguajeCollection($service->getTopIdiomas($request->query('cantidad'))), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 
     /**
@@ -171,6 +172,6 @@ class GeographicController extends Controller
      */
     public function getPaisesHaciaDondeNoSeExporta(GeographicService $service)
     {
-        return response()->json(new PaisCollection($service->getPaisesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+        return response()->json(new ApiPaisCollection($service->getPaisesHaciaDondeNoSeExporta()), 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
     }
 }

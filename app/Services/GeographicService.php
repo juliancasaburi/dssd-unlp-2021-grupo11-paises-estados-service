@@ -98,6 +98,19 @@ class GeographicService
 
     public function getPaisesHaciaDondeNoSeExporta()
     {
-        return [];
+        $paises = Pais::all();
+
+        $client = $this->getCountriesAPIClient();
+        $gql = <<<QUERY
+                    query {
+                        countries {
+                            name
+                        }
+                    }
+                    QUERY;
+
+        $apiPaises = collect($client->runRawQuery($gql)->getData()->countries);
+
+        return $apiPaises->whereNotIn('name', $paises->pluck('name'))->values();
     }
 }
