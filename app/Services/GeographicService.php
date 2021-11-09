@@ -22,7 +22,8 @@ class GeographicService
             ->orderBy('sociedades_anonimas_count', 'desc')
             ->take($cantidad)
             ->get();
-        return $estados;
+
+        return $estados->where('sociedades_anonimas_count', '>', 0);
     }
 
     public function getTopIdiomas($cantidad = 2)
@@ -31,6 +32,8 @@ class GeographicService
             ->orderBy('sociedades_anonimas_count', 'desc')
             ->take($cantidad)
             ->get();
+
+        $paises = $paises->where('sociedades_anonimas_count', '>', 0);
 
         $client = $this->getCountriesAPIClient();
         $paises->map(function ($pais) use ($client) {
@@ -68,12 +71,14 @@ class GeographicService
             ->take(1)
             ->get();
 
-        return $continentes;
+        return $continentes->where('sociedades_anonimas_count', '>', 0);
     }
 
     public function getContinentesHaciaDondeNoSeExporta()
     {
-        $continentes = Continente::all();
+        $continentes = Continente::withCount('sociedadesAnonimas')
+                                    ->get()
+                                    ->where('sociedades_anonimas_count', '>', 0);
         /* Verificar si se exporta hacia todos los continentes, para no realizar request a la API
         https://countries.trevorblades.com/ usa el modelo de 7 continentes
         https://en.wikipedia.org/wiki/Continent#/media/File:Continental_models-Australia.gif
@@ -98,7 +103,9 @@ class GeographicService
 
     public function getPaisesHaciaDondeNoSeExporta()
     {
-        $paises = Pais::all();
+        $paises = Pais::withCount('sociedadesAnonimas')
+                        ->get()
+                        ->where('sociedades_anonimas_count', '>', 0);
 
         $client = $this->getCountriesAPIClient();
         $gql = <<<QUERY
