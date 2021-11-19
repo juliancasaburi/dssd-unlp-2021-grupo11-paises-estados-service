@@ -23,7 +23,7 @@ cd ./dssd-unlp-2021-grupo11-laradock
 _2. Posicionese sobre el directorio_
 
 ```
-cd dssd-unlp-2021-grupo11-backend
+cd dssd-unlp-2021-grupo11-paises-estados-service
 ```
 
 _3. Configure el repositorio_
@@ -44,6 +44,7 @@ Posicionese sobre el directorio dssd-unlp-2021-grupo11-laradock
 ```
 cd ./dssd-unlp-2021-grupo11-laradock
 sudo docker-compose exec workspace /bin/bash
+cd dssd-unlp-2021-grupo11-paises-estados-service
 composer install
 php artisan key:generate
 php artisan jwt:secret
