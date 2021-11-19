@@ -42,7 +42,7 @@ Luego de iniciar el docker-compose provisto, deberá ejecutar los siguientes com
 
 Posicionese sobre el directorio dssd-unlp-2021-grupo11-laradock
 ```
-cd ./dssd-unlp-2021-grupo11-laradock
+cd ./dssd-unlp-2021-grupo11-laradock/laradock
 sudo docker-compose exec workspace /bin/bash
 cd dssd-unlp-2021-grupo11-paises-estados-service
 composer install
