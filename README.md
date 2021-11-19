@@ -40,7 +40,6 @@ Configure las variables en el archivo ` .env`
 
 Luego de iniciar el docker-compose provisto, deberá ejecutar los siguientes comandos
 
-Posicionese sobre el directorio dssd-unlp-2021-grupo11-laradock
 ```
 cd ./dssd-unlp-2021-grupo11-laradock/laradock
 sudo docker-compose exec workspace /bin/bash
