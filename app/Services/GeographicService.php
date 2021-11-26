@@ -6,6 +6,7 @@ use App\Models\Continente;
 use App\Models\Pais;
 use App\Models\Estado;
 use GraphQL\Client;
+use Illuminate\Support\Facades\DB;
 
 class GeographicService
 {
@@ -28,10 +29,12 @@ class GeographicService
 
     public function getTopIdiomas($cantidad = 2)
     {
-        $paises = Pais::withCount('sociedadesAnonimas')
-            ->orderBy('sociedades_anonimas_count', 'desc')
-            ->take($cantidad)
-            ->get();
+        $paises = Pais::withCount(['sociedadesAnonimas as sociedades_anonimas_count' => function ($query) {
+            $query->select(DB::raw('count(distinct(sociedades_anonimas_estados.sociedad_anonima_id))'));
+        }])
+        ->orderBy('sociedades_anonimas_count', 'desc')
+        ->take($cantidad)
+        ->get();
 
         $paises = $paises->where('sociedades_anonimas_count', '>', 0);
 
@@ -66,10 +69,13 @@ class GeographicService
         $continentes = Continente::where([
             ['name', '!=', 'North America'],
             ['name', '!=', 'South America'],
-        ])->withCount('sociedadesAnonimas')
-            ->orderBy('sociedades_anonimas_count', 'desc')
-            ->take(1)
-            ->get();
+        ])
+        ->withCount(['sociedadesAnonimas as sociedades_anonimas_count' => function ($query) {
+            $query->select(DB::raw('count(distinct(sociedades_anonimas_estados.sociedad_anonima_id))'));
+        }])
+        ->orderBy('sociedades_anonimas_count', 'desc')
+        ->take(1)
+        ->get();
 
         return $continentes->where('sociedades_anonimas_count', '>', 0);
     }
@@ -77,8 +83,8 @@ class GeographicService
     public function getContinentesHaciaDondeNoSeExporta()
     {
         $continentes = Continente::withCount('sociedadesAnonimas')
-                                    ->get()
-                                    ->where('sociedades_anonimas_count', '>', 0);
+            ->get()
+            ->where('sociedades_anonimas_count', '>', 0);
         /* Verificar si se exporta hacia todos los continentes, para no realizar request a la API
         https://countries.trevorblades.com/ usa el modelo de 7 continentes
         https://en.wikipedia.org/wiki/Continent#/media/File:Continental_models-Australia.gif
@@ -104,8 +110,8 @@ class GeographicService
     public function getPaisesHaciaDondeNoSeExporta()
     {
         $paises = Pais::withCount('sociedadesAnonimas')
-                        ->get()
-                        ->where('sociedades_anonimas_count', '>', 0);
+            ->get()
+            ->where('sociedades_anonimas_count', '>', 0);
 
         $client = $this->getCountriesAPIClient();
         $gql = <<<QUERY
